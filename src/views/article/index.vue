@@ -253,11 +253,11 @@ export default {
       this.loading = false
       // console.log(res)
       let result
-      try{
-        result = JSON.parse(res.data)
-      }catch(err){
+      // try{
+      //   result = JSON.parse(res.data)
+      // }catch(err){
         result = res.data
-      }
+      // }
       this.total_count = result.data.total_count
       this.tableData = result.data.results
     },

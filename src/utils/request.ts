@@ -19,11 +19,12 @@ const request = axios.create({
       // console.log(data)
       return JSONBIGINT.parse(data)
     } catch (err) {
-      console.log('转换失败', err)
+      // console.log('转换失败', err)
       // 如果转换失败了，则进入这里
-      // 我们在这里把数据原封不动的直接返回给请求使用
-      return data
-      // return JSON.parse(data)
+      // JSONBIGINT解析失败，用正则匹配来替换大数id
+      let newResponseString = data.replace(/\"id\": (\d+)/gi,'"id":"$1"');
+      // return newResponseString
+      return JSON.parse(newResponseString)
     }
 
     // axios 默认在内部使用 JSON.parse 来转换处理原始数据

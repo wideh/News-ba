@@ -139,8 +139,14 @@ export default {
     const /* 加载修改文章的信息 */loadArticle = async (id:any) => {
       const res = await getArticleById(id)
       // console.log(res)
+      let result
+      // try{
+      //   result = JSON.parse(res.data)
+      // }catch(err){
+        result = res.data
+      // }
       if(res && res.status == '200') {
-        const article1 = res.data.data
+        const article1 = result.data
         // reactive对象不能用解构赋值，即不能{...article1} 也不能toRefs(article1)
         article.title = article1?.title
         instance.txt.html(article1?.content)
